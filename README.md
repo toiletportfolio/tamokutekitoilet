@@ -19,7 +19,7 @@
 高齢者の方との散歩や出かけるとき
 
 ## 設計書
-<...>
+画面遷移図、ER図 https://app.diagrams.net/#G1zSTDOOVw_aJ06lZljC7-EZxHZr9OR2LJ
 
 ## 開発環境
 - OS：Linux(CentOS)
