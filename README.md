@@ -20,6 +20,7 @@
 
 ## 設計書
 画面遷移図、ER図 https://app.diagrams.net/#G1zSTDOOVw_aJ06lZljC7-EZxHZr9OR2LJ
+テーブル定義書 https://docs.google.com/spreadsheets/d/1AtamywcpPGRJpwl6B_uNNIz5SNB4_hu0KqvASN9fzeY/edit#gid=438324777
 
 ## 開発環境
 - OS：Linux(CentOS)
