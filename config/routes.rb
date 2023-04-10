@@ -4,6 +4,15 @@ Rails.application.routes.draw do
     sessions: 'public/sessions'
   }
 
+  scope module: :public do
+    root to: 'homes#top'
+    get 'users/mypage' => 'users#show'
+    patch 'users/mypage' => 'users#update'
+    get 'users/mypage/edit' => 'users#edit'
+    get 'users/unsubscribe'
+    patch 'users/withdrawal'
+  end
+
   devise_for :admins, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
   }
