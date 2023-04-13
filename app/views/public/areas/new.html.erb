@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="row mt-4">
+    <div class="col-10 mx-auto">
+      <h2 class="text-center w-25 h4 bg-light">新規投稿</h2>
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-6">
+      <%= form_with model:@area, local:true do |f| %>
+        <table class="table table-borderless">
+          <tbody>
+            <tr>
+              <td><%= f.label :area_name, '施設名', class: "col-form-label" %></td>
+              <td><%= f.text_field :area_name, class: "form-control" %></td>
+            </tr>
+
+            <tr>
+              <td><%= f.label :address, '住所', class: "col-form-label" %></td>
+              <td><%= f.text_field :address, class: "form-control" %></td>
+            </tr>
+
+            <tr>
+              <td><%= f.label :facilities, '施設の種類', class: "col-form-label" %></td>
+              <td><%= f.select :facilities, [[1,"コンビニ"], [2, "ショッピング"], [3, "飲食店"], [4, "公園"], [5, "その他"]], include_blank: "選択して下さい", class: "form-control" %></td>
+            </tr>
+
+            <tr>
+              <td><%= f.label :handrail, '手すり', class: "col-form-label" %></td>
+              <td>
+                <%= f.radio_button :handrail, false %>
+                <%= f.label :handrail, '無し' %>
+                <%= f.radio_button :handrail, true %>
+                <%= f.label :handrail, '有り' %>
+              </td>
+            </tr>
+
+            <tr>
+              <td><%= f.label :washlet, 'ウォシュレット', class: "col-form-label" %></td>
+              <td>
+                <%= f.radio_button :washlet, false %>
+                <%= f.label :washlet, '無し' %>
+                <%= f.radio_button :washlet, true %>
+                <%= f.label :washlet, '有り' %>
+              </td>
+            </tr>
+
+            <tr>
+              <td><%= f.label :open_time, '利用可能時間', class: "col-form-label" %></td>
+              <td class="form-inline">
+                <%= f.text_field :open_time, class: "form-control col-4" %>~
+                <%= f.text_field :close_time, class: "form-control col-4" %>
+              </td>
+            </tr>
+
+            <tr>
+              <td></td>
+              <td><%= f.submit '新規登録', class: "btn btn-success btn-lg" %></td>
+            </tr>
+          </tbody>
+        </table>
+      <% end %>
+    </div>
+  </div>
+</div>

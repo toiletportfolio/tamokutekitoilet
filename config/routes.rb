@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     get 'users/mypage/edit' => 'users#edit'
     get 'users/unsubscribe'
     patch 'users/withdrawal'
+    resources :areas, only: [:new, :create, :show, :edit, :update, :destroy]
   end
 
   devise_for :admins, skip: [:registrations, :passwords], controllers: {
