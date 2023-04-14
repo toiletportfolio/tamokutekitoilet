@@ -5,7 +5,7 @@
     </div>
   </div>
 
-  <div class="row mt-4">
+  <div class="row mt-4 mx-auto">
     <div class="col-6">
       <%= form_with model:@area, local:true do |f| %>
         <table class="table table-borderless">
@@ -22,7 +22,7 @@
 
             <tr>
               <td><%= f.label :facilities, '施設の種類', class: "col-form-label" %></td>
-              <td><%= f.select :facilities, [[1,"コンビニ"], [2, "ショッピング"], [3, "飲食店"], [4, "公園"], [5, "その他"]], include_blank: "選択して下さい", class: "form-control" %></td>
+              <td><%= f.select(:facilities, ["コンビニ", "ショッピング","飲食店","公園","その他"], {include_blank: "選択して下さい"}, { class: "custom-select mr-2"}) %></td>
             </tr>
 
             <tr>
@@ -48,8 +48,8 @@
             <tr>
               <td><%= f.label :open_time, '利用可能時間', class: "col-form-label" %></td>
               <td class="form-inline">
-                <%= f.text_field :open_time, class: "form-control col-4" %>~
-                <%= f.text_field :close_time, class: "form-control col-4" %>
+                <%= f.text_field :open_time, placeholder: "00:00", class: "form-control col-4" %>~
+                <%= f.text_field :close_time, placeholder: "24:00", class: "form-control col-4" %>
               </td>
             </tr>
 
@@ -60,6 +60,36 @@
           </tbody>
         </table>
       <% end %>
+    </div>
+
+    <div class="col-6">
+      <div id='map'></div>
+
+      <style>
+        #map {
+          height: 400px;
+          width: 400px;
+        }
+      </style>
+
+      <script>
+        let map
+
+        function initMap(){
+          geocoder = new google.maps.Geocoder()
+
+          map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: 40.7828, lng:-73.9653},
+            zoom: 12,
+          });
+
+          marker = new google.maps.Marker({
+            position:  {lat: 40.7828, lng:-73.9653},
+            map: map
+          });
+        }
+      </script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=ENV['SECRET_KEY']&callback=initMap" async defer></script>
     </div>
   </div>
 </div>
