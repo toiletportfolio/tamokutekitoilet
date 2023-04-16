@@ -45,9 +45,29 @@
       <div>
         <%= link_to '編集する', edit_area_path(@area), class: "btn btn-success" %>
       </div>
+
+      <div class="mt-4">
+        <% if @area.favorited_by?(current_user) %>
+          <%= link_to area_favorites_path(@area), method: :delete do %>
+            ♥<%= @area.favorites.count %> いいね
+          <% end %>
+        <% else %>
+          <%= link_to area_favorites_path(@area), method: :post do %>
+            ♡<%= @area.favorites.count %> いいね
+          <% end %>
+        <% end %>
+      </div>
+
+      <div class="mt-4">
+        <h4 class="bg-light">コメント投稿</h4>
+        <%= form_with model: [@area, @area_comment], local: false do |f| %>
+          <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに", class: "form-control comment-textarea" %>
+          <%= f.submit "送信", class: "btn btn-primary" %>
+        <% end %>
+      </div>
     </div>
 
-    <div class="col-4">
+    <div class="col-6">
       <div id='map'></div>
 
       <style>
@@ -86,6 +106,29 @@
         }
       </script>
       <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>
+
+      <div class="mt-4">
+        <h4 class="bg-light">コメント</h4>
+        <table class="table table-borderless">
+          <tbody>
+            <% @area.area_comments.each do |area_comment| %>
+            <tr>
+              <td>
+                <%= link_to users_mypage_path(area_comment.user) do %>
+                  <%= area_comment.user.name %>
+                <% end %>
+              </td>
+              <td><%= area_comment.comment %></td>
+              <td>
+                <% if area_comment.user == current_user %>
+                  <%= link_to "削除する", area_area_comment_path(area_comment.area, area_comment), method: :delete, class: "btn btn-danger" %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>
