@@ -70,8 +70,7 @@
       </style>
 
       <script>
-      function initMap() {
-         geocoder = new google.maps.Geocoder()
+        function initMap() {
           // #latitude,longitudeから位置を特定
           var test ={lat: <%= @area.latitude %>, lng: <%= @area.longitude %>};
           var map = new google.maps.Map(document.getElementById('map'), {
@@ -97,7 +96,7 @@
             infowindow.open(map, marker);
           });
         }
-
+        
         let geocoder
 
         function codeAddress(){

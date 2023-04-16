@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     patch 'users/withdrawal'
     resources :areas, only: [:new, :create, :show, :edit, :update, :destroy] do
       resource :favorites, only: [:index, :create, :destroy]
-      resource :area_comments, only: [:create, :destroy]
+      resources :area_comments, only: [:create, :destroy]
     end
     get 'favorites/index'
   end
