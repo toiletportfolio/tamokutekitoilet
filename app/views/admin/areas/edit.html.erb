@@ -1,0 +1,122 @@
+<div class="container">
+  <div class="row mt-4">
+    <div class="col-6">
+      <%= form_with model: @area, url: admin_area_path(@area),method: :patch do |f| %>
+      <table class="table table-borderless">
+        <tbody>
+          <tr>
+              <td><%= f.label :area_name, '施設名', class: "col-form-label" %></td>
+              <td><%= f.text_field :area_name, class: "form-control" %></td>
+            </tr>
+
+            <tr>
+              <td><%= f.label :address, '住所', class: "col-form-label" %></td>
+              <td>
+                <%= f.text_field :address, id: "address", type: "textbox", class: "form-control" %>
+                <input type="button" value="検索" onclick="codeAddress()">
+              </td>
+            </tr>
+
+            <tr>
+              <td><%= f.label :facilities, '施設の種類', class: "col-form-label" %></td>
+              <td><%= f.select(:facilities, ["コンビニ", "ショッピング","飲食店","公園","その他"], {include_blank: "選択して下さい"}, { class: "custom-select mr-2"}) %></td>
+            </tr>
+
+            <tr>
+              <td><%= f.label :handrail, '手すり', class: "col-form-label" %></td>
+              <td>
+                <%= f.radio_button :handrail, false %>
+                <%= f.label :handrail, '無し' %>
+                <%= f.radio_button :handrail, true %>
+                <%= f.label :handrail, '有り' %>
+              </td>
+            </tr>
+
+            <tr>
+              <td><%= f.label :washlet, 'ウォシュレット', class: "col-form-label" %></td>
+              <td>
+                <%= f.radio_button :washlet, false %>
+                <%= f.label :washlet, '無し' %>
+                <%= f.radio_button :washlet, true %>
+                <%= f.label :washlet, '有り' %>
+              </td>
+            </tr>
+
+            <tr>
+              <td><%= f.label :open_time, '利用可能時間', class: "col-form-label" %></td>
+              <td class="form-inline">
+                <%= f.text_field :open_time, placeholder: "00:00", class: "form-control col-4" %>~
+                <%= f.text_field :close_time, placeholder: "24:00", class: "form-control col-4" %>
+              </td>
+            </tr>
+
+            <tr>
+              <td><%= f.submit '保存する', class: "btn btn-success btn-lg" %></td>
+              <td><%= link_to '削除する', admin_area_path, method: :delete, class: "btn btn-danger btn-lg" %></td>
+            </tr>
+        </tbody>
+      </table>
+      <% end %>
+    </div>
+
+    <div class="col-4">
+      <div id='map'></div>
+
+      <style>
+        #map {
+          height: 400px;
+          width: 400px;
+        }
+      </style>
+
+      <script>
+      　let map
+        let geocoder
+        function initMap() {
+          geocoder = new google.maps.Geocoder()
+          // #latitude,longitudeから位置を特定
+          var test ={lat: <%= @area.latitude %>, lng: <%= @area.longitude %>};
+            map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 15,
+            center: test
+          });
+          var transitLayer = new google.maps.TransitLayer();
+          transitLayer.setMap(map);
+
+          var contentString = '住所：<%= @area.address %>';
+          var infowindow = new google.maps.InfoWindow({
+            content: contentString
+          });
+
+          // #Map上の指定した位置にピンを挿して表示する
+          var marker = new google.maps.Marker({
+            position:test,
+            map: map,
+            title: contentString
+          });
+
+          marker.addListener('click', function() {
+            infowindow.open(map, marker);
+          });
+        }
+
+        function codeAddress(){
+          let inputAddress = document.getElementById('address').value;
+
+          geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+            if (status == 'OK') {
+              map.setCenter(results[0].geometry.location);
+              var marker = new google.maps.Marker({
+                  map: map,
+                  position: results[0].geometry.location
+              });
+            } else {
+              alert('該当する結果がありませんでした：' + status);
+            }
+          });
+        }
+      </script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>
+    </div>
+  </div>
+</div>
