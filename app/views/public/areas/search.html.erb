@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row">
+    <div class="col-4">
+      <table class="table">
+        <tbody>
+          <% @areas.each do |area| %>
+          <tr>
+            <td><%= link_to area.area_name, area_path(area) %></td>
+            <td><%= area.address %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="col-6">
+      
+    </div>
+  </div>
+</div>
