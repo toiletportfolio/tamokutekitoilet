@@ -1,0 +1,91 @@
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-6">
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+            <td class="table-active text-dark">施設名</td>
+            <td><%= @area.area_name %></td>
+          </tr>
+
+          <tr>
+            <td class="table-active text-dark">住所</td>
+            <td><%= @area.address %></td>
+          </tr>
+
+          <tr>
+            <td class="table-active text-dark">施設の種類</td>
+            <td><%= @area.facilities %></td>
+          </tr>
+
+          <tr>
+            <td class="table-active text-dark">手すり</td>
+            <% if @area.handrail == false %>
+              <td>無し</td>
+            <% else @area.handrail == true %>
+              <td>有り</td>
+            <% end %>
+          </tr>
+
+          <tr>
+            <td class="table-active text-dark">ウォシュレット</td>
+            <% if @area.washlet == false %>
+              <td>無し</td>
+            <% else @area.washlet == true %>
+              <td>有り</td>
+            <% end %>
+          </tr>
+
+          <tr>
+            <td class="table-active text-dark">利用可能時間</td>
+            <td><%= @area.open_time+"~"+@area.close_time %></td>
+          </tr>
+        </tbody>
+      </table>
+      <div>
+        <%= link_to '編集する', edit_admin_area_path(@area), class: "btn btn-success" %>
+      </div>
+    </div>
+
+    <div class="col-6">
+      <div id='map'></div>
+
+      <style>
+        #map {
+          height: 400px;
+          width: 400px;
+        }
+      </style>
+
+      <script>
+        function initMap() {
+          // #latitude,longitudeから位置を特定
+          var test ={lat: <%= @area.latitude %>, lng: <%= @area.longitude %>};
+          var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 15,
+            center: test
+          });
+          var transitLayer = new google.maps.TransitLayer();
+          transitLayer.setMap(map);
+
+          var contentString = '住所：<%= @area.address %>';
+          var infowindow = new google.maps.InfoWindow({
+            content: contentString
+          });
+
+          // #Map上の指定した位置にピンを挿して表示する
+          var marker = new google.maps.Marker({
+            position:test,
+            map: map,
+            title: contentString
+          });
+
+          marker.addListener('click', function() {
+            infowindow.open(map, marker);
+          });
+        }
+      </script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>
+    </div>
+  </div>
+</div>

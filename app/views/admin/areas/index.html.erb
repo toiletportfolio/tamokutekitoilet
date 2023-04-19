@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row mt-4">
+    <div class="col-10 mx-auto">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>施設名</th>
+            <th>住所</th>
+            <th>施設の種類</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @areas.each do |area| %>
+            <tr>
+              <td><%= link_to area.area_name, admin_area_path(area) %></td>
+              <td><%= area.address %></td>
+              <td><%= area.facilities %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
