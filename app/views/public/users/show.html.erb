@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row mt-4">
     <div class="col-10 mx-auto">
-      <h2 class="text-center w-25 h4 bg-light">マイページ</h2>
+      <h2 class="text-center w-25 bg-light">マイページ</h2>
     </div>
   </div>
 
@@ -26,12 +26,12 @@
   </div>
 
   <div class='row mt-5'>
-    <h4 class="col-2 mb-0" style="height:38px; line-height:38px;"><strong>お気に入り登録</strong></h4>
-    <%= link_to "一覧", favorites_index_path, class: 'btn btn-primary d-inline-block col-1' %>
+    <h4 class="col-3 mb-0" style="height:38px; line-height:38px;"><strong>お気に入り登録</strong></h4>
+    <%= link_to "確認する", favorites_index_path, class: 'btn btn-primary d-inline-block col-1' %>
   </div>
 
   <div class='row mt-5'>
-    <h4 class="col-2 mb-0" style="height:38px; line-height:38px;"><strong>コメント一覧</strong></h4>
-    <%= link_to "編集する", users_mypage_edit_path, class: 'btn btn-primary d-inline-block col-1' %>
+    <h4 class="col-3 mb-0" style="height:38px; line-height:38px;"><strong>コメント一覧</strong></h4>
+    <%= link_to "確認する", area_comments_index_path, class: 'btn btn-primary d-inline-block col-1' %>
   </div>
 </div>

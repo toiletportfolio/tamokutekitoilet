@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row mt-4">
+    <div class="col-10 mx-auto">
+      <table class="table table-bordered">
+        <tbody>
+          <% @area_comments.each do |area_comment| %>
+          <tr>
+            <td><%= link_to area_comment.area.area_name, area_path(area_comment.area), class: '' %></td>
+            <td><%= area_comment.area.address %></td>
+            <td><%= area_comment.comment %></td>
+          </tr>
+        </tbody>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

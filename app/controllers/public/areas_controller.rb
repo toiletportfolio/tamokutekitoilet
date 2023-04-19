@@ -44,6 +44,11 @@ class Public::AreasController < ApplicationController
     redirect_to root_path
   end
 
+  def search
+    #Viewのformで取得したパラメータをモデルに渡す
+    @areas = Area.search(params[:search])
+  end
+
   private
 
   def area_params

@@ -16,10 +16,16 @@ Rails.application.routes.draw do
       resources :area_comments, only: [:create, :destroy]
     end
     get 'favorites/index'
+    get 'area_comments/index'
+    get "search" => "areas#search"
   end
 
   devise_for :admins, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
   }
+
+  namespace :admin do
+    resources :users, only: [:index, :show, :edit, :update]
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

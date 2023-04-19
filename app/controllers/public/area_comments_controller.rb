@@ -1,4 +1,9 @@
 class Public::AreaCommentsController < ApplicationController
+  before_action :authenticate_user!
+
+  def index
+    @area_comments = AreaComment.all
+  end
 
   def create
     area = Area.find(params[:area_id])

@@ -13,4 +13,12 @@ class Area < ApplicationRecord
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
+
+  def self.search(search)
+    if search
+      Area.where(['content LIKE ?', "%#{search}%"])
+    else
+      Area.all
+    end
+  end
 end

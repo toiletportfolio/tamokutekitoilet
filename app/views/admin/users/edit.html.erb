@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <h2 class="card-header bg-light"><%= @user.name %>さんの会員情報編集</h2>
+          <%= form_with model: @user,url: admin_user_path(@user),method: :patch do |f| %>
+          <div class="card-body">
+            <table class="table table-borderless">
+              <tbody>
+                <tr>
+                  <td>会員ID</td>
+                  <td><%= @user.id %></td>
+                </tr>
+                <tr>
+                  <td>ユーザー名</td>
+                  <td><%= f.text_field :name, class: "form-control" %></td>
+                </tr>
+                <tr>
+                  <td>メールアドレス</td>
+                  <td><%= f.text_field :email, class: "form-control", placeholder: "example@example.com" %></td>
+                </tr>
+                <tr>
+                  <td>会員ステータス</td>
+                  <td class="form-check form-check-inline">
+                    <%= f.radio_button :is_deleted, false, class: "form-check-input", id: "is_active" %>
+                    <%= f.label :is_deleted, "退会", { value: :false, for: "is_active", class: "form-check-label" } %>
+                  </td>
+                  <td class="form-check form-check-inline">
+                    <%= f.radio_button :is_deleted, true, class: "form-check-input", id: "is_deleted" %>
+                    <%= f.label :is_deleted, "有効", { value: :true, for: "is_deleted", class: "form-check-label" } %>
+                  </td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td><%= f.submit "変更を保存", class: "btn btn-success btn-lg" %></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
