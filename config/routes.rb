@@ -26,7 +26,13 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users, only: [:index, :show, :edit, :update]
-    resources :areas, only: [:index, :show, :edit, :update, :destroy]
+    resources :areas, only: [:index, :show, :edit, :update, :destroy] do
+      resources :area_comments, only: [:update, :destroy]
+    end
+  end
+
+  scope module: :admin do
+    resources :area_comments, only: [:index, :show, :edit]
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
