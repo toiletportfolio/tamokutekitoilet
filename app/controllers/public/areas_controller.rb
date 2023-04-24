@@ -4,6 +4,10 @@ class Public::AreasController < ApplicationController
   def new
     @area = Area.new
   end
+  
+  def index
+    redirect_to new_area_path
+  end
 
   def create
     @area = Area.new(area_params)
