@@ -9,6 +9,14 @@ class Area < ApplicationRecord
 
   has_many :favorites, dependent: :destroy
   has_many :area_comments, dependent: :destroy
+  
+  validates :area_name, presence: true
+  validates :address, presence: true
+  validates :facilities, presence: true
+  validates :handrail, presence: true
+  validates :washlet, presence: true
+  validates :open_time, presence: true
+  validates :close_time, presence: true
 
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)

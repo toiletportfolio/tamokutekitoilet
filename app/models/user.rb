@@ -8,4 +8,7 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :area_comments, dependent: :destroy
 
+  validates :name, presence: true
+  validates :email, presence: true
+
 end

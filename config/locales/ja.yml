@@ -1,0 +1,13 @@
+ja:
+  activerecord:
+    models:
+      area: 場所
+    attributes:
+      area:
+        area_name: 施設名
+        address: 住所
+        facilities: 施設の種類
+        handrail: 手すり
+        washlet: ウォシュレット
+        open_time: 利用可能開始時間
+        close_time: 利用可能終了時間

@@ -1,6 +1,7 @@
 <div class="container">
   <div class="row mt-4">
     <div class="col-6">
+      <%= render 'layouts/errors' obj: @area %>
       <%= form_with model: @area, url: area_path(@area),method: :patch do |f| %>
       <table class="table table-borderless">
         <tbody>
