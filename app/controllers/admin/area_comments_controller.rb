@@ -15,12 +15,17 @@ class Admin::AreaCommentsController < ApplicationController
 
   def update
     @area_comment = AreaComment.find(params[:id])
-    @area_comment.update(area_comment_params)
-    redirect_to area_comment_path(@area_comment)
+    if @area_comment.update(area_comment_params)
+      flash[:notice] = "変更保存しました"
+      redirect_to area_comment_path(@area_comment)
+    else
+      render :edit
+    end
   end
 
   def destroy
     AreaComment.find(params[:id]).destroy
+    flash[:notice] = "削除しました"
     redirect_to area_comments_path
   end
 
