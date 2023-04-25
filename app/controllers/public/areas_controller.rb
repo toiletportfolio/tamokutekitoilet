@@ -13,6 +13,7 @@ class Public::AreasController < ApplicationController
     @area = Area.new(area_params)
     @area.user_id = current_user.id
     if  @area.save
+      flash[:notice] = "投稿が成功しました"
       redirect_to area_path(@area.id)
     else
       render :new
@@ -36,6 +37,7 @@ class Public::AreasController < ApplicationController
   def update
     @area = Area.find(params[:id])
     if @area.update(area_params)
+      flash[:notice] = "変更保存しました"
       redirect_to area_path(@area.id)
     else
       render :edit
@@ -45,6 +47,7 @@ class Public::AreasController < ApplicationController
   def destroy
     area = Area.find(params[:id])
     area.destroy
+    flash[:notice] = "削除しました"
     redirect_to root_path
   end
 

@@ -12,6 +12,7 @@ class Public::UsersController < ApplicationController
   def update
     @user = current_user
     if @user.update(user_params)
+      flash[:notice] = "変更保存しました"
       redirect_to users_mypage_path
     else
       render :edit
@@ -27,6 +28,7 @@ class Public::UsersController < ApplicationController
     # is_deletedカラムをtrueに変更することにより削除フラグを立てる
     @user.update(is_deleted: true)
     reset_session
+    flash[:notice] = "退会処理を実行しました"
     redirect_to root_path
   end
 

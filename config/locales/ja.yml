@@ -2,6 +2,8 @@ ja:
   activerecord:
     models:
       area: 場所
+      user: ユーザー
+      area_comment: コメント
     attributes:
       area:
         area_name: 施設名
@@ -11,3 +13,9 @@ ja:
         washlet: ウォシュレット
         open_time: 利用可能開始時間
         close_time: 利用可能終了時間
+      user:
+        name: ユーザー名
+        email: メールアドレス
+        password: パスワード
+      area_comment:
+        comment: コメント

@@ -15,13 +15,18 @@ class Admin::AreasController < ApplicationController
 
   def update
     @area = Area.find(params[:id])
-    @area.update(area_params)
-    redirect_to admin_area_path(@area.id)
+    if @area.update(area_params)
+      flash[:notice] = "変更保存しました"
+      redirect_to admin_area_path(@area.id)
+    else
+      render :edit
+    end
   end
 
   def destroy
     area = Area.find(params[:id])
     area.destroy
+    flash[:notice] = "削除しました"
     redirect_to admin_areas_path
   end
 
