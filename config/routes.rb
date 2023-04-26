@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     get 'favorites/index'
     get 'area_comments/index'
     get "search" => "areas#search"
+    get "jmapsearch" => "areas#jmapsearch"
   end
 
   devise_for :admins, skip: [:registrations, :passwords], controllers: {

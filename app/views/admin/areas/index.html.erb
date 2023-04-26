@@ -4,7 +4,7 @@
       <h2 class="text-center w-25 h4 bg-light">投稿一覧</h2>
     </div>
   </div>
-  
+
   <div class="row mt-4">
     <div class="col-10 mx-auto">
       <table class="table table-bordered">
@@ -13,19 +13,24 @@
             <th>施設名</th>
             <th>住所</th>
             <th>施設の種類</th>
+            <th></th>
           </tr>
         </thead>
 
         <tbody>
           <% @areas.each do |area| %>
             <tr>
-              <td><%= link_to area.area_name, admin_area_path(area) %></td>
+              <td><%= area.area_name %></td>
               <td><%= area.address %></td>
               <td><%= area.facilities %></td>
+              <td><%= link_to '詳細', admin_area_path(area), class: "btn btn-success" %></td>
             </tr>
           <% end %>
         </tbody>
       </table>
+      <div class="d-flex justify-content-center">
+        <%= paginate @areas %>
+      </div>
     </div>
   </div>
 </div>

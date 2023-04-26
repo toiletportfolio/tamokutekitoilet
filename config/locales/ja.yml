@@ -7,6 +7,7 @@ ja:
     attributes:
       area:
         area_name: 施設名
+        prefecture: 都道府県
         address: 住所
         facilities: 施設の種類
         handrail: 手すり

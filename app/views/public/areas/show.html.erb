@@ -4,7 +4,7 @@
       <h2 class="text-center w-25 h4 bg-light">投稿詳細</h2>
     </div>
   </div>
-  
+
   <div class="row mt-5">
     <div class="col-6">
       <table class="table table-bordered">
@@ -49,17 +49,17 @@
         </tbody>
       </table>
       <div>
-        <%= link_to '編集する', edit_area_path(@area), class: "btn btn-success" %>
+        <%= link_to '編集する', edit_area_path(@area), data: {"turbolinks"=>false}, class: "btn btn-success" %>
       </div>
 
       <div class="mt-4">
         <% if @area.favorited_by?(current_user) %>
           <%= link_to area_favorites_path(@area), method: :delete do %>
-            ♥<%= @area.favorites.count %> いいね
+            お気に入り登録 ♥<%= @area.favorites.count %>
           <% end %>
         <% else %>
           <%= link_to area_favorites_path(@area), method: :post do %>
-            ♡<%= @area.favorites.count %> いいね
+            お気に入り登録 ♡<%= @area.favorites.count %>
           <% end %>
         <% end %>
       </div>

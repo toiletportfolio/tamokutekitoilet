@@ -11,14 +11,17 @@
         <tbody>
           <% @favorites.each do |favorite| %>
           <tr>
-            <td><%= link_to favorite.area.area_name, area_path(favorite.area), class: '' %></td>
+            <td><%= favorite.area.area_name %></td>
             <td><%= favorite.area.address %></td>
             <td>お気に入り登録<%= favorite.area.favorites.count %>件</td>
-            <td>コメント<%= favorite.area.area_comments.count %>件</td>
+            <td><%= link_to "詳細", area_path(favorite.area), class: 'btn btn-success' %></td>
           </tr>
           <% end %>
         </tbody>
       </table>
+      <div class="d-flex justify-content-center">
+        <%= paginate @favorites %>
+      </div>
     </div>
   </div>
 </div>

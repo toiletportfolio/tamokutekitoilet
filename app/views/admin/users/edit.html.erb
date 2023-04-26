@@ -24,11 +24,11 @@
                   <td>会員ステータス</td>
                   <td class="form-check form-check-inline">
                     <%= f.radio_button :is_deleted, false, class: "form-check-input", id: "is_active" %>
-                    <%= f.label :is_deleted, "退会", { value: :false, for: "is_active", class: "form-check-label" } %>
+                    <%= f.label :is_deleted, "有効", { value: :false, for: "is_active", class: "form-check-label" } %>
                   </td>
                   <td class="form-check form-check-inline">
                     <%= f.radio_button :is_deleted, true, class: "form-check-input", id: "is_deleted" %>
-                    <%= f.label :is_deleted, "有効", { value: :true, for: "is_deleted", class: "form-check-label" } %>
+                    <%= f.label :is_deleted, "退会", { value: :true, for: "is_deleted", class: "form-check-label" } %>
                   </td>
                   </tr>
                   <tr>

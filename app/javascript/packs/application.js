@@ -20,5 +20,9 @@ Turbolinks.start()
 ActiveStorage.start()
 
  $(document).ready(function() {
-    $('#jmap').jmap();
+    $('#jmap').jmap({
+     onSelect: function(e, data) {
+       window.location.href = ("/jmapsearch?prefecture=" + e.currentTarget.innerText)
+     },
+    });
 });
