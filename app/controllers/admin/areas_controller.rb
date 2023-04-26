@@ -2,7 +2,7 @@ class Admin::AreasController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @areas = Area.all
+    @areas = Area.all.page(params[:page]).per(5)
   end
 
   def show

@@ -4,7 +4,7 @@ class Public::AreasController < ApplicationController
   def new
     @area = Area.new
   end
-  
+
   def index
     redirect_to new_area_path
   end
@@ -53,12 +53,16 @@ class Public::AreasController < ApplicationController
 
   def search
     #Viewのformで取得したパラメータをモデルに渡す
-    @areas = Area.search(params[:search])
+    @areas = Area.search(params[:search]).page(params[:page]).per(5)
+  end
+
+  def jmapsearch
+    @areas = Area.search(params[:prefecture]).page(params[:page]).per(5)
   end
 
   private
 
   def area_params
-    params.require(:area).permit(:user_id, :area_name, :address, :facilities, :handrail, :washlet, :open_time, :close_time)
+    params.require(:area).permit(:user_id, :area_name, :address, :facilities, :handrail, :washlet, :open_time, :close_time, :prefecture)
   end
 end

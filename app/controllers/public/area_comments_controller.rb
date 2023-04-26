@@ -2,7 +2,7 @@ class Public::AreaCommentsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @area_comments = AreaComment.all
+    @area_comments = current_user.area_comments.page(params[:page]).per(5)
   end
 
   def create

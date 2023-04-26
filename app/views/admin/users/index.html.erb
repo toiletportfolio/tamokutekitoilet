@@ -22,7 +22,7 @@
               <td><%= user.id %></td>
               <td><%= link_to user.name,admin_user_path(user) %></td>
               <td><%= user.email %></td>
-                <% if user.is_deleted == false %>
+                <% if user.is_deleted %>
                   <td>退会済み</td>
                 <% else %>
                   <td class="text-success">有効</td>
@@ -31,6 +31,9 @@
           <% end %>
         </tbody>
        </table>
+       <div class="d-flex justify-content-center">
+        <%= paginate @users %>
+      </div>
      </div>
    </div>
 </div>

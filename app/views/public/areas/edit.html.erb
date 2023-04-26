@@ -73,7 +73,7 @@
 
             <tr>
               <td><%= f.submit '保存する', class: "btn btn-success btn-lg" %></td>
-              <td><%= link_to '削除する', area_path, method: :delete, class: "btn btn-danger btn-lg" %></td>
+              <td><%= link_to '削除する', area_path, method: :delete, data: {"turbolinks"=>false}, class: "btn btn-danger btn-lg" %></td>
             </tr>
         </tbody>
       </table>

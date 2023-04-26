@@ -32,16 +32,6 @@ class Public::UsersController < ApplicationController
     redirect_to root_path
   end
 
-  #退会した会員は同じemailでログインできなくなる
-  def reject_inactive_user
-    @user = User.find_by(email: params[:user][:email])
-    if @user
-      if @user.valid_password?(params[:user][:password]) && (@user.active_for_authentication? == true)
-        redirect_to new_user_registration_path
-      end
-    end
-  end
-
   private
 
   def user_params
