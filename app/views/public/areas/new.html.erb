@@ -17,11 +17,6 @@
             </tr>
 
             <tr>
-              <td><%= f.label :prefecture, '都道府県', class: "col-form-label" %></td>
-              <td><%= f.select :prefecture, Area.prefectures.keys, include_blank: "選択して下さい", class: "custom-select" %></td>
-            </tr>
-
-            <tr>
               <td><%= f.label :address, '住所', class: "col-form-label" %></td>
               <td>
                 <%= f.text_field :address, id: "address", type: "textbox", class: "form-control" %>
