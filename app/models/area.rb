@@ -22,7 +22,6 @@ class Area < ApplicationRecord
   has_many :area_comments, dependent: :destroy
 
   validates :area_name, presence: true
-  validates :prefecture, presence: true
   validates :address, presence: true
   validates :facilities, presence: true
   validates :open_time, presence: true
