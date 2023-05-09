@@ -34,11 +34,11 @@
               <td style="display: flex;">
                 <div>
                   <%= f.radio_button :handrail, false %>
-                  <%= f.label :handrail, '無し' %>
+                  <%= f.label :handrail, '無し', value: false %>
                  </div>
                 <div style="margin-left: 5px;">
                   <%= f.radio_button :handrail, true %>
-                  <%= f.label :handrail, '有り' %>
+                  <%= f.label :handrail, '有り', value: true %>
                   </div>
               </td>
             </tr>
@@ -48,11 +48,11 @@
               <td style="display: flex;">
                 <div>
                   <%= f.radio_button :washlet, false %>
-                  <%= f.label :washlet, '無し' %>
+                  <%= f.label :washlet, '無し', value: false %>
                 </div>
                 <div style="margin-left: 5px;">
                   <%= f.radio_button :washlet, true %>
-                  <%= f.label :washlet, '有り' %>
+                  <%= f.label :washlet, '有り', value: true %>
                 </div>
               </td>
             </tr>
