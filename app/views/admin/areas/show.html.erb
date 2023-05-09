@@ -4,7 +4,7 @@
       <h2 class="text-center w-25 h4 bg-light">投稿詳細</h2>
     </div>
   </div>
-  
+
   <div class="row mt-5">
     <div class="col-6">
       <table class="table table-bordered">
@@ -45,6 +45,11 @@
           <tr>
             <td class="table-active text-dark">利用可能時間</td>
             <td><%= @area.open_time+"~"+@area.close_time %></td>
+          </tr>
+
+          <tr>
+            <td class="table-active text-dark">投稿日時</td>
+            <td><%= @area.created_at %></td>
           </tr>
         </tbody>
       </table>

@@ -46,6 +46,11 @@
             <td class="table-active text-dark">利用可能時間</td>
             <td><%= @area.open_time+"~"+@area.close_time %></td>
           </tr>
+
+          <tr>
+            <td class="table-active text-dark">投稿日時</td>
+            <td><%= @area.created_at %></td>
+          </tr>
         </tbody>
       </table>
       <div>
