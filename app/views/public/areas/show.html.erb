@@ -49,13 +49,15 @@
 
           <tr>
             <td class="table-active text-dark">投稿日時</td>
-            <td><%= @area.created_at %></td>
+            <td><%= @area.created_at.strftime("%Y-%m-%d %H:%M") %></td>
           </tr>
         </tbody>
       </table>
-      <div>
-        <%= link_to '編集する', edit_area_path(@area), data: {"turbolinks"=>false}, class: "btn btn-success" %>
-      </div>
+      <% if @area.user == current_user %>
+        <div>
+          <%= link_to '編集する', edit_area_path(@area), data: {"turbolinks"=>false}, class: "btn btn-success" %>
+        </div>
+      <% end %>
 
       <div class="mt-4">
         <% if @area.favorited_by?(current_user) %>
@@ -124,15 +126,12 @@
           <tbody>
             <% @area.area_comments.each do |area_comment| %>
             <tr>
-              <td>
-                <%= link_to users_mypage_path(area_comment.user) do %>
-                  <%= area_comment.user.name %>
-                <% end %>
-              </td>
+              <td><%= area_comment.user.name %></td>
               <td><%= area_comment.comment %></td>
+              <td><%= area_comment.created_at %></td>
               <td>
                 <% if area_comment.user == current_user %>
-                  <%= link_to "削除する", area_area_comment_path(area_comment.area, area_comment), method: :delete, class: "btn btn-danger" %>
+                  <%= link_to "削除する", area_area_comment_path(area_comment.area, area_comment), method: :delete, data: { confirm: '本当に削除しますか'}, class: "btn btn-danger" %>
                 <% end %>
               </td>
             </tr>

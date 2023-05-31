@@ -24,7 +24,7 @@
               <td><%= area.area_name %></td>
               <td><%= area.address %></td>
               <td><%= area.facilities %></td>
-              <td><%= area.created_at %></td>
+              <td><%= area.created_at.strftime("%Y-%m-%d %H:%M") %></td>
               <td><%= link_to '詳細', admin_area_path(area), class: "btn btn-success" %></td>
             </tr>
           <% end %>
