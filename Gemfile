@@ -62,6 +62,8 @@ gem 'enum_help'
 gem 'geocoder'
 gem 'rails-i18n'
 gem 'kaminari','~> 1.2.1'
+gem 'jquery-rails'
+
 
 group :production do
   gem 'mysql2'

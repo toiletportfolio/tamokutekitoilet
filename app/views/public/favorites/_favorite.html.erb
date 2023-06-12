@@ -1,0 +1,9 @@
+<% if area.favorited_by?(current_user) %>
+  <%= link_to area_favorites_path(area), method: :delete, remote: true do %>
+    お気に入り登録 ♥<%= area.favorites.count %>
+  <% end %>
+<% else %>
+  <%= link_to area_favorites_path(area), method: :post, remote: true do %>
+    お気に入り登録 ♡<%= area.favorites.count %>
+  <% end %>
+<% end %>

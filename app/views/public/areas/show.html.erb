@@ -59,16 +59,8 @@
         </div>
       <% end %>
 
-      <div class="mt-4">
-        <% if @area.favorited_by?(current_user) %>
-          <%= link_to area_favorites_path(@area), method: :delete do %>
-            お気に入り登録 ♥<%= @area.favorites.count %>
-          <% end %>
-        <% else %>
-          <%= link_to area_favorites_path(@area), method: :post do %>
-            お気に入り登録 ♡<%= @area.favorites.count %>
-          <% end %>
-        <% end %>
+      <div class="mt-4" id="favorite_buttons_<%= @area.id %>">
+        <%= render "public/favorites/favorite", area: @area %>
       </div>
 
       <div class="mt-4">
